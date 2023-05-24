@@ -40,7 +40,12 @@ sns.distplot(log_saleprice)
 #SalePrice log1p 변환
 house_df['SalePrice']=log_saleprice
 #숫자형 null 컬럼은 평균으로 대체
-house_df.fillna(house_df.mean(),inplace=True)
+null_col_cnt=house_df.isnull().sum()[(house_df.isnull().sum()!=0) & (house_df.dtypes!=object)]
+print("@Null feature's type:\n",house_df.dtypes[null_col_cnt.index],end='\n\n')
+
+for i in null_col_cnt.index:
+    house_df[i].fillna(house_df[i].mean(),inplace=True)
+
 
 #NUll이 있는 feature명과 type
 null_col_cnt=house_df.isnull().sum()[house_df.isnull().sum()>0]
