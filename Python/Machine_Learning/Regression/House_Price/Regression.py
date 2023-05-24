@@ -15,7 +15,7 @@ import os
 #print(os.getcwd())
 
 #Data Check
-house_df_org=pd.read_csv('train.csv')
+house_df_org=pd.read_csv('./train.csv')
 house_df=house_df_org.copy()
 print('Raw data')
 print(house_df.head(),end='\n\n')
@@ -282,4 +282,4 @@ print('\n\n')
 
 plt.show()
 
-
+house_df_ohe.to_pickle('./preprocessed_train.pkl')
