@@ -56,15 +56,15 @@ def pipeline_(x_train,y_train,x_test,y_test):
     #pipeline 만들기
     pipeline=Pipeline([
         ('tfidf_vect',TfidfVectorizer(stop_words='english',ngram_range=(1,2),max_df=300)),
-        ('Lr_reg',LogisticRegression(C=10,n_jobs=-1))
+        ('Lr_reg',LogisticRegression(C=10))
     ])
 
     #gridsearch : 객체 변수에 언더바 2개 붙여서 하이퍼파라미터 이름과 값 설정
     param={'tfidf_vect__ngram_range':[(1,1),(1,2),(1,3)],
-           'tfidf_vect__max_df':[100.300,700],
+           'tfidf_vect__max_df':[100,300,700],
            'Lr_reg__C':[1,5,10]}
 
-    grid_cv_pipe = GridSearchCV(pipeline, param_grid=param, cv=3, scoring='accuracy', verbose=1,n_jobs=-1)
+    grid_cv_pipe = GridSearchCV(pipeline, param_grid=param, cv=3, scoring='accuracy', verbose=1)
     grid_cv_pipe.fit(x_train,y_train)
     print('Best param: ',grid_cv_pipe.best_params_,'Best score: ', grid_cv_pipe.best_score_)
 
