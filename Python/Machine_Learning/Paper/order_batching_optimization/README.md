@@ -1,9 +1,9 @@
 Order Batching Optimization for Warehouses with Clusrer-Picking   
-Aaya Aboelfotoh etc.{: .text-center }
+Aaya Aboelfotoh etc.
 ===================================================================
 
-## 25th International Conference on Production Research Manufacuring Innovation: Cyber Physical Manufacturing{: .text-center }
-## August 9-14, 2019, Chicago, Illinois(USA){: .text-center }
+## 25th International Conference on Production Research Manufacuring Innovation: Cyber Physical Manufacturing 
+## August 9-14, 2019, Chicago, Illinois(USA)
 
 ### 1. Problem
 ![problem_img](https://github.com/Kookkool/Study/assets/105410621/813ab486-1e95-4e1b-a917-23f2a4825590)       
