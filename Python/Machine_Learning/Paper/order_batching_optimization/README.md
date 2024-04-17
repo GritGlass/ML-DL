@@ -6,7 +6,7 @@ Aaya Aboelfotoh etc.
 ## August 9-14, 2019, Chicago, Illinois(USA)
 
 ### 1. Problem
-![alt text](/Study/Python/Machine_Learning/Paper/order_batching_optimization/imgs/problem_img.png)   
+![Alt text](/Study/Python/Machine_Learning/Paper/order_batching_optimization/imgs/problem_img.png)   
 
 
 ### 2. Method
