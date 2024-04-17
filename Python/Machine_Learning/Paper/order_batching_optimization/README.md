@@ -1,9 +1,9 @@
 Order Batching Optimization for Warehouses with Clusrer-Picking   
-Aaya Aboelfotoh etc.
+Aaya Aboelfotoh etc.{: .text-center }
 ===================================================================
 
-## 25th International Conference on Production Research Manufacuring Innovation: Cyber Physical Manufacturing
-## August 9-14, 2019, Chicago, Illinois(USA)
+## 25th International Conference on Production Research Manufacuring Innovation: Cyber Physical Manufacturing{: .text-center }
+## August 9-14, 2019, Chicago, Illinois(USA){: .text-center }
 
 ### 1. Problem
 ![problem_img](https://github.com/Kookkool/Study/assets/105410621/813ab486-1e95-4e1b-a917-23f2a4825590)       
@@ -12,12 +12,15 @@ Aaya Aboelfotoh etc.
 ### 2. Method
 #### A. First Come First Serve(FCFS)
 the order number also corresponds to the sequence of the order’s arrival.   
-- result
+- result   
+    
 ![FCFS_result](https://github.com/Kookkool/Study/assets/105410621/2b0c14d0-aa9a-4175-9bdd-47b8d28ea870) 
 
 #### B. Mixed Integer Programming(MIP)
 - Algorithm  
-![MIP](https://github.com/Kookkool/Study/assets/105410621/54aa3e5f-9a24-496f-b137-0f7ef6584a99)    
+   
+![MIP](https://github.com/Kookkool/Study/assets/105410621/54aa3e5f-9a24-496f-b137-0f7ef6584a99)
+        
 The objective function in Equation (3) minimizes the total distance visited by all batches.   
 Equation (4) ensures that the number of orders assigned to each batch does not exceed the maximum order count per batch i.e. number of bins.    
 Equation (5) ensures that every order is assigned to one batch only. 
