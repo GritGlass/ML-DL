@@ -4,8 +4,5 @@
 *.dat
 *.zip
 
-
-./Study/Python/Paper/order_batching_optimization/dataset
-./python/glass_git/Study/Python/Paper/order_batching_optimization/.ipynb_checkpoints
-./Study/Python/Paper/order_batching_optimization/SRRP(X)
-
+**/.ipynb_checkpoints/
+**/data/
