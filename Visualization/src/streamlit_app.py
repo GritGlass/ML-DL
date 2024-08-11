@@ -7,7 +7,7 @@ from datetime import datetime
 
 @st.cache_resource
 def load_data():
-    df_agg_sub=pd.read_csv('/Users/graceandrew/Documents/Git/Study/Visualization/data/Aggregated_Metrics_By_Country_And_Subscriber_Status.csv')
+    df_agg_sub=pd.read_csv('./Visualization/data/Aggregated_Metrics_By_Country_And_Subscriber_Status.csv')
     return  df_agg_sub
 df_agg_sub=load_data()
 st.dataframe(df_agg_sub)
