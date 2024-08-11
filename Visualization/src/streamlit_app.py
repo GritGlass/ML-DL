@@ -52,14 +52,3 @@ if add_slider == 'option3':
     df_agg_sub[20:30]['Average View Percentage']=df_agg_sub[20:30]['Average View Percentage'].apply(lambda x: round(x,1))
     st.dataframe(df_agg_sub[20:30].style.hide().applymap(style_negative, props='color:red;').applymap(style_positive, props='color:green;'))
     
-    
-    
- 
-# st.write('Hello world!')
-# st.header('st.button')
-
-# if st.button('Say hello'):
-#     st.write('Why hello there')
-# else:
-#     st.write('Goodbye')
-    
