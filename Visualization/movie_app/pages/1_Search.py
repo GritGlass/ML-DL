@@ -103,7 +103,7 @@ df_event=st.dataframe(
     },
     use_container_width=True,
     on_select="rerun",
-    selection_mode="multi-row",
+    selection_mode="single-row",
     hide_index=True,
 )
 
@@ -121,18 +121,18 @@ def make_total_graph(df_imdb,feature,color=None):
     ))
     return fig
 
-def random_color():
+# def random_color():
     
-    return "rgb({}, {}, {})".format(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+#     return "rgb({}, {}, {})".format(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 
-def add_graph(fig,row_movie,color,feature):
+def add_graph(fig,row_movie,feature):
 
     fig.add_trace(go.Scatter(
         x=[row_movie['Released_Year']],
         y=[row_movie[feature]],
         mode='markers',
-        marker=dict(color=color, symbol='star',line=dict(color='black',width=1),size=12),
+        marker=dict(color='red', symbol='star',line=dict(color='black',width=1),size=12),
         name=str(row_movie['Series_Title'])
     ))
     # 레이아웃 설정
@@ -151,19 +151,18 @@ try:
     IMDB_Rating_fig=make_total_graph(df_imdb,'IMDB_Rating')
     Runtime_fig=make_total_graph(df_imdb,'Runtime(min)')
     Gross_fig=make_total_graph(df_imdb,'Gross')
-    for m in range(len(detailed_movies)):
-        row_index=detailed_movies[m]
-        row_movie=selected_movies.loc[row_index]
+ 
+    row_index=detailed_movies[0]
+    row_movie=selected_movies.loc[row_index]
 
-        row_rating=row_movie['IMDB_Rating']
-        row_rating=row_movie['Runtime(min)']
-        row_rating=row_movie['Gross']
-        row_rating=row_movie['Certificate']
+    row_rating=row_movie['IMDB_Rating']
+    row_rating=row_movie['Runtime(min)']
+    row_rating=row_movie['Gross']
+    row_rating=row_movie['Certificate']
 
-        color=random_color()
-        updated_IMDB_fig=add_graph(IMDB_Rating_fig,row_movie,color,'IMDB_Rating')
-        runtime_fig=add_graph(Runtime_fig,row_movie,color,'Runtime(min)')
-        gross_fig=add_graph(Gross_fig,row_movie,color,'Gross')
+    updated_IMDB_fig=add_graph(IMDB_Rating_fig,row_movie,'IMDB_Rating')
+    runtime_fig=add_graph(Runtime_fig,row_movie,'Runtime(min)')
+    gross_fig=add_graph(Gross_fig,row_movie,'Gross')
 
     # Streamlit에서 Plotly 차트 표시
     st.plotly_chart(updated_IMDB_fig)
