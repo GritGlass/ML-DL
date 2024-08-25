@@ -11,8 +11,10 @@ from PIL import Image
 import spacy
 import requests
 from io import BytesIO
+import matplotlib.pyplot as plt
+import random 
 
-
+random.seed(36)
 os.chdir='/Users/graceandrew/Documents/Git/Study/Visualization/movie_app'
 st.set_page_config(page_title="Movie Chart", 
                    page_icon=None, 
@@ -37,26 +39,138 @@ df_imdb=load_data()
 movie_genre=df_imdb.columns.tolist() #영화 장르
 before_genre_col=movie_genre.index('Gross')
 df_imdb['Genre']=["".join(i) for i in df_imdb['Genre']]
-# st.dataframe(df_imdb.iloc[:,:before_genre_col]) #raw data
 
+#genre list
+genre_list=sorted(movie_genre[before_genre_col+1:])
+genre_list.insert(0,'Total')
 
-st.subheader("Total Data", divider=True)
+#director list
+director_list=sorted(df_imdb['Director'].unique().tolist())
+director_list.insert(0,'Total')
 
-options = st.multiselect(
-    "Select genre",
-    movie_genre[before_genre_col+1:]
-)
+#year list
+year_min=df_imdb['Released_Year'].min()
+year_max=df_imdb['Released_Year'].max()
+year_range=np.arange(year_min,year_max+1)
 
-a=[df_imdb[df_imdb[i]>0].index.tolist() for i in options]
-b=sum(a,[])
-rows_index=list(set(b))
-genre_col=movie_genre[before_genre_col+1]
-st.data_editor(
-    df_imdb.loc[rows_index,:genre_col],
+#rating_range
+rating_min=df_imdb['IMDB_Rating'].min()
+rating_max=df_imdb['IMDB_Rating'].max()
+rating_range=np.arange(rating_min,rating_max+1,0.1)
+rating_range=list(map(lambda x: round(x,2),rating_range))
+with st.sidebar:
+    st.header('Seletct')
+    seleted_genre=st.selectbox(
+        "Genre",
+        genre_list)
+    
+    seleted_director=st.selectbox(
+        "Director",
+        director_list)
+    
+    min_year, max_year = st.select_slider(
+    "Year",
+    options=year_range,
+    value=(year_min,year_max))
+
+    min_rating, max_rating = st.select_slider(
+    "Rating",
+    options=rating_range,
+    value=(rating_min, rating_max))
+
+st.header("Total Data", divider=True)
+
+if seleted_genre=='Total':
+    genre_const=True
+else: 
+    genre_const=(df_imdb[seleted_genre]>0)
+
+if seleted_director=='Total':
+    director_const=True
+else: 
+    director_const=(df_imdb['Director']==seleted_director)
+
+year_const=((df_imdb['Released_Year']>=min_year)&(df_imdb['Released_Year']<=max_year))
+rating_const=((df_imdb['IMDB_Rating']>=min_rating)&(df_imdb['IMDB_Rating']<=max_rating))
+
+selected_movies=df_imdb[genre_const&director_const&year_const&rating_const]
+df_event=st.dataframe(
+    selected_movies,
     column_config={
         "Poster_Link": st.column_config.ImageColumn(
             "Poster", help="Streamlit app preview screenshots"
         )
     },
+    use_container_width=True,
+    on_select="rerun",
+    selection_mode="multi-row",
     hide_index=True,
 )
+
+st.divider()
+st.subheader('Detail information')
+
+def make_total_graph(df_imdb,feature,color=None):
+    fig=go.Figure()
+    fig.add_trace(go.Scatter(
+        x=df_imdb['Released_Year'],
+        y=df_imdb[feature],
+        mode='markers',
+        marker=dict(color=color),
+        name='ALL'
+    ))
+    return fig
+
+def random_color():
+    
+    return "rgb({}, {}, {})".format(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+
+def add_graph(fig,row_movie,color,feature):
+
+    fig.add_trace(go.Scatter(
+        x=[row_movie['Released_Year']],
+        y=[row_movie[feature]],
+        mode='markers',
+        marker=dict(color=color, symbol='star',line=dict(color='black',width=1),size=12),
+        name=str(row_movie['Series_Title'])
+    ))
+    # 레이아웃 설정
+    fig.update_layout(
+        title=str(feature),
+        xaxis_title="Year",
+        yaxis_title=str(feature),
+        showlegend=True,
+        yaxis=dict(showticklabels=False)  # y축 라벨을 숨김
+    )
+    return fig
+  
+
+try:
+    detailed_movies=df_event.get('selection').get('rows')
+    IMDB_Rating_fig=make_total_graph(df_imdb,'IMDB_Rating')
+    Runtime_fig=make_total_graph(df_imdb,'Runtime(min)')
+    Gross_fig=make_total_graph(df_imdb,'Gross')
+    for m in range(len(detailed_movies)):
+        row_index=detailed_movies[m]
+        row_movie=selected_movies.loc[row_index]
+
+        row_rating=row_movie['IMDB_Rating']
+        row_rating=row_movie['Runtime(min)']
+        row_rating=row_movie['Gross']
+        row_rating=row_movie['Certificate']
+
+        color=random_color()
+        updated_IMDB_fig=add_graph(IMDB_Rating_fig,row_movie,color,'IMDB_Rating')
+        runtime_fig=add_graph(Runtime_fig,row_movie,color,'Runtime(min)')
+        gross_fig=add_graph(Gross_fig,row_movie,color,'Gross')
+
+    # Streamlit에서 Plotly 차트 표시
+    st.plotly_chart(updated_IMDB_fig)
+    st.plotly_chart(runtime_fig)
+    st.plotly_chart(gross_fig)
+    
+except:
+    st.write('Click the dataframe row')
+    
+
