@@ -175,7 +175,39 @@ runtime_fig.update_layout(
 # 그래프 표시
 runtime_event = st.plotly_chart(runtime_fig)
 #---------------------------------------------------------------------------------------
+#gross 그래프
+st.subheader("Gross", divider=False)
+gross_fig=go.Figure()
+gross_fig.add_trace(go.Scatter(
+        x=df_imdb['Released_Year'],
+        y=df_imdb['Gross'],
+        mode='markers',
+        marker=dict(color='orange',line=dict(color='black',width=1)),
+        name=str(df_imdb['Series_Title'])))
 
+gross_df=pd.DataFrame(df_imdb[['Gross','Released_Year']])
+gross_df['avg_gross']=gross_df['Gross'].mean()
+
+#Line Chart 추가
+gross_fig.add_trace(go.Scatter(
+    x=gross_df['Released_Year'],
+    y=gross_df['avg_gross'],
+    line = dict(color='red', width=2, dash='dash'),
+    mode='lines',
+    name='avg_gross'
+))
+
+# 레이아웃 설정
+gross_fig.update_layout(
+    title=str('Gross'),
+    xaxis_title="Year",
+    yaxis_title=str('Gross'),
+    xaxis=dict(range=[gross_df['Released_Year'].min(), gross_df['Released_Year'].max()]),
+    showlegend=False,
+    yaxis=dict(showticklabels=False)  # y축 라벨을 숨김
+)
+gross_event = st.plotly_chart(gross_fig)
+#---------------------------------------------------------------------------------------
 #longest runtime & shortest runtime movies
 #get poster image
 def get_image(link):

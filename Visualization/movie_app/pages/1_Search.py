@@ -140,17 +140,52 @@ def add_graph(fig,row_movie,feature):
         yaxis=dict(showticklabels=False)  # y축 라벨을 숨김
     )
     return fig
-  
+
+def get_image(link):
+    # 인터넷에서 이미지 가져오기
+    response = requests.get(link)
+    img = Image.open(BytesIO(response.content))
+    return img 
 
 try:
     detailed_movies=df_event.get('selection').get('rows')
+    row_index=detailed_movies[0]
+    row_movie=selected_movies.loc[row_index]
+
+    poster,content=st.columns(2)
+    with poster:
+        #shortest
+        st.markdown(f"##### The selected movie - ({row_movie['Runtime(min)'].item()} min) <br><br>",unsafe_allow_html=True)
+        with st.container():
+            po_col1,po_col2,po_col3=st.columns([1,5,1])
+            # Streamlit에서 이미지 표시
+            short_poster=get_image(row_movie['Poster_Link'])
+            with po_col2:
+                st.image(short_poster,width=350,caption=row_movie['Series_Title'], use_column_width=False)
+
+
+    with content:
+        with st.container():
+            st.markdown('<br><br>',unsafe_allow_html=True)
+            st.markdown(f"""##### Title    
+                        {row_movie['Series_Title']} """)
+            st.markdown(f"""##### Director    
+                        {row_movie['Director']}""")
+            st.markdown(f"""##### Year    
+                        {row_movie['Released_Year']}""")        
+            st.markdown(f"""##### Genre     
+                        {row_movie['Genre']} """)
+            st.markdown(f"""##### Overview    
+                        {row_movie['Overview']} """)
+            st.markdown('<br><br><br><br><br>',unsafe_allow_html=True)
+
+    st.divider() 
+
     IMDB_Rating_fig=make_total_graph(df_imdb,'IMDB_Rating')
     Runtime_fig=make_total_graph(df_imdb,'Runtime(min)')
     Gross_fig=make_total_graph(df_imdb,'Gross')
  
-    row_index=detailed_movies[0]
-    row_movie=selected_movies.loc[row_index]
-
+    
     row_rating=row_movie['IMDB_Rating']
     row_rating=row_movie['Runtime(min)']
     row_rating=row_movie['Gross']
@@ -165,44 +200,9 @@ try:
     st.plotly_chart(runtime_fig)
     st.plotly_chart(gross_fig)
     
+    
+
+
 except:
     st.write('Click the dataframe row')
     
-
-st.divider() 
-
-def get_image(link):
-    # 인터넷에서 이미지 가져오기
-    response = requests.get(link)
-    img = Image.open(BytesIO(response.content))
-    return img
-
-poster,content=st.columns(2)
-with poster:
-    #shortest
-    st.markdown(f"##### The selected movie - ({row_movie['Runtime(min)'].item()} min) <br><br>",unsafe_allow_html=True)
-    with st.container():
-        po_col1,po_col2,po_col3=st.columns([1,5,1])
-        # Streamlit에서 이미지 표시
-        short_poster=get_image(row_movie['Poster_Link'])
-        with po_col2:
-            st.image(short_poster,width=350,caption=row_movie['Series_Title'], use_column_width=False)
-
-
-with content:
-    with st.container():
-        st.markdown('<br><br>',unsafe_allow_html=True)
-        st.markdown(f"""##### Title    
-                    {row_movie['Series_Title']} """)
-        st.markdown(f"""##### Director    
-                    {row_movie['Director']}""")
-        st.markdown(f"""##### Year    
-                    {row_movie['Released_Year']}""")        
-        st.markdown(f"""##### Genre     
-                    {row_movie['Genre']} """)
-        st.markdown(f"""##### Overview    
-                    {row_movie['Overview']} """)
-        st.markdown('<br><br><br><br><br>',unsafe_allow_html=True)
-
-                           
-st.divider() 
