@@ -9,7 +9,9 @@
 **/.ipynb_checkpoints
 **/data/
 
+#가상환경
 .venv 
+venv-metal/
 
 # Python
 __pycache__/
