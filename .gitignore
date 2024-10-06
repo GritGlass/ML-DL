@@ -3,6 +3,38 @@
 *.doc
 *.dat
 *.zip
+*.csv
+*.xlsx
 
 **/.ipynb_checkpoints
 **/data/
+
+.venv 
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+
+# 환경 설정 파일
+.env
+*.local
+
+# 로그 파일
+*.log
+logs/
+
+# Python packages
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
