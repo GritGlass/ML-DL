@@ -5,6 +5,9 @@
 *.zip
 *.csv
 *.xlsx
+*.mp4
+*.png
+*.jpg
 
 **/.ipynb_checkpoints
 **/data/
@@ -22,6 +25,9 @@ __pycache__/
 *.venv
 env/
 venv/
+
+#model weight
+*.pt 
 
 # 환경 설정 파일
 .env
