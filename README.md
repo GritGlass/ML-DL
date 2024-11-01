@@ -1,2 +1,1 @@
-# Study
-## This repository is about personal study.
+# This repository is a Machine Learing/Deep Learning materials.
