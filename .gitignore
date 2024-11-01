@@ -3,6 +3,46 @@
 *.doc
 *.dat
 *.zip
+*.csv
+*.xlsx
+*.mp4
+*.png
+*.jpg
 
 **/.ipynb_checkpoints
 **/data/
+
+#가상환경
+.venv 
+venv-metal/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+
+#model weight
+*.pt 
+
+# 환경 설정 파일
+.env
+*.local
+
+# 로그 파일
+*.log
+logs/
+
+# Python packages
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
