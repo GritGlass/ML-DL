@@ -11,6 +11,7 @@
 
 **/.ipynb_checkpoints
 **/data/
+**/Model/
 
 #가상환경
 .venv 
