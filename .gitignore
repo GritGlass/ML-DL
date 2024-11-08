@@ -8,10 +8,13 @@
 *.mp4
 *.png
 *.jpg
+*.js
+*.json
 
 **/.ipynb_checkpoints
 **/data/
 **/Model/
+**/node_modules
 
 #가상환경
 .venv 
