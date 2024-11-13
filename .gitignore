@@ -19,6 +19,7 @@
 #가상환경
 .venv 
 venv-metal/
+.conda
 
 # Python
 __pycache__/
