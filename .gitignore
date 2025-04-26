@@ -11,6 +11,11 @@
 *.js
 *.json
 
+
+#folder
+dataset
+data
+
 **/.ipynb_checkpoints
 **/data/
 **/Model/
@@ -20,6 +25,7 @@
 .venv 
 venv-metal/
 .conda
+.husky
 
 # Python
 __pycache__/
