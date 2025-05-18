@@ -17,12 +17,6 @@ import Home
 
 random.seed(36)
 os.chdir='/Users/graceandrew/Documents/Git/Study/Visualization/movie_app'
-st.set_page_config(page_title="Movie Chart", 
-                   page_icon=None, 
-                   layout="wide", 
-                   initial_sidebar_state="auto", 
-                   menu_items=None)
-
 
 
 @st.cache_data
@@ -146,7 +140,7 @@ def get_image(link):
 try:
     detailed_movies=df_event.get('selection').get('rows')
     row_index=detailed_movies[0]
-    row_movie=selected_movies.loc[row_index]
+    row_movie=selected_movies.iloc[row_index]
 
     poster,content=st.columns(2)
     with poster:
