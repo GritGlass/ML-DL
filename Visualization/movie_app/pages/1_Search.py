@@ -157,7 +157,7 @@ try:
             # Streamlit에서 이미지 표시
             short_poster=get_image(row_movie['Poster_Link'])
             with po_col2:
-                st.image(short_poster,width=350,caption=row_movie['Series_Title'], use_column_width=False)
+                st.image(short_poster,width=350,caption=row_movie['Series_Title'], use_container_width=False)
 
 
     with content:
