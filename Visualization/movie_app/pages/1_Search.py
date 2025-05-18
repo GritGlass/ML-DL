@@ -13,6 +13,7 @@ import requests
 from io import BytesIO
 import matplotlib.pyplot as plt
 import random 
+import Home
 
 random.seed(36)
 os.chdir='/Users/graceandrew/Documents/Git/Study/Visualization/movie_app'
@@ -23,18 +24,13 @@ st.set_page_config(page_title="Movie Chart",
                    menu_items=None)
 
 
-@st.cache_data
-def load_data():
-    df_agg_sub=pd.read_csv('./data/processed_imdb_top_1000.csv')
-    return  df_agg_sub
-
 
 @st.cache_data
 def convert_df(df):
     return df.to_csv().encode("utf-8")
 
 
-df_imdb=load_data()
+df_imdb=Home.load_data()
 
 movie_genre=df_imdb.columns.tolist() #영화 장르
 before_genre_col=movie_genre.index('Gross')

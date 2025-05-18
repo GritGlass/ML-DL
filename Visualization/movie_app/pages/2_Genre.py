@@ -11,20 +11,9 @@ from PIL import Image
 import spacy
 import requests
 from io import BytesIO
-
+import Home
 
 os.chdir='/Users/graceandrew/Documents/Git/Study/Visualization/movie_app'
-st.set_page_config(page_title="Movie Chart", 
-                   page_icon=None, 
-                   layout="wide", 
-                   initial_sidebar_state="auto", 
-                   menu_items=None)
-
-
-@st.cache_data
-def load_data():
-    df_agg_sub=pd.read_csv('./data/processed_imdb_top_1000.csv')
-    return  df_agg_sub
 
 
 @st.cache_data
@@ -61,7 +50,7 @@ def wordcloud_genre(df_imdb,genre):
     )
     return fig
 
-df_imdb=load_data()
+df_imdb=Home.load_data()
 
 movie_genre=df_imdb.columns.tolist() #영화 장르
 before_genre_col=movie_genre.index('Gross')
@@ -73,7 +62,7 @@ genre_df=pd.DataFrame(genre_df)
 genre_df.columns=['genre','counts']
 genre_df=genre_df[genre_df['counts']>0]
 genre_pie = px.pie(genre_df, values='counts', names='genre', title='Population of Movie Genre')
-pie_event = st.plotly_chart(genre_pie, key="genre", on_select="rerun")
+pie_event = st.plotly_chart(genre_pie, on_select="rerun") 
 
 
 #data

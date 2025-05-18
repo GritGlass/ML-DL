@@ -21,7 +21,7 @@ st.set_page_config(page_title="Movie Chart",
 
 @st.cache_data
 def load_data():
-    df_agg_sub=pd.read_csv('./data/processed_imdb_top_1000.csv')
+    df_agg_sub=pd.read_csv(r'E:\glass_git\ML-DL\Visualization\data\processed_imdb_top_1000.csv')
     return  df_agg_sub
 
 
@@ -230,7 +230,7 @@ with poster:
         # Streamlit에서 이미지 표시
         short_poster=get_image(shortest_runtime['Poster_Link'].item())
         with po_col2:
-            st.image(short_poster,width=350,caption=shortest_runtime['Series_Title'].item(), use_column_width=False)
+            st.image(short_poster,width=350,caption=shortest_runtime['Series_Title'].item(), use_container_width=False)
     #longest
     st.markdown('<br><br>',unsafe_allow_html=True)
     st.markdown(f"##### The longset movie - ({loggest_runtime['Runtime(min)'].item()} min) <br><br>",unsafe_allow_html=True)
@@ -239,7 +239,7 @@ with poster:
         # Streamlit에서 이미지 표시
         long_poster=get_image(loggest_runtime['Poster_Link'].item())
         with po_col2:
-            st.image(long_poster,width=350,caption=loggest_runtime['Series_Title'].item(), use_column_width=False)
+            st.image(long_poster,width=350,caption=loggest_runtime['Series_Title'].item(), use_container_width=False)
 
 with content:
     with st.container():
