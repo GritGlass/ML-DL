@@ -11,10 +11,10 @@
 *.js
 *.json
 
-
 #folder
 dataset
 data
+BitNet
 
 **/.ipynb_checkpoints
 **/data/
@@ -39,6 +39,8 @@ venv/
 
 #model weight
 *.pt 
+*.h5
+*.keras
 
 # 환경 설정 파일
 .env
