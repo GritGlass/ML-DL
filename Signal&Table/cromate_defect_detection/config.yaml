@@ -1,0 +1,16 @@
+name : LSTMAutoEncoder
+epochs: 1000
+slide_windw: 1
+seq_len: 3
+batch_size: 10
+model_type: LSTMAutoEncoder
+metric : Regression
+train_loss: MSELoss
+test_loss: BCELoss
+optimizer: AdamW
+learning_rate: 0.001
+features: ['pH', 'Temp', 'Voltage', 'run_time', 'month', 'day', 'hour', 'minutes',
+       'seconds','fft_pH_real','fft_pH_imag', 'fft_pH_magnitude', 'fft_pH_phase', 'fft_Temp_real',
+       'fft_Temp_imag', 'fft_Temp_magnitude', 'fft_Temp_phase','fft_Voltage_phase',
+       'fft_Voltage_real', 'fft_Voltage_imag', 'fft_Voltage_magnitude']
+data_root: E:/glass_git/ML-DL/Signal&Table/data/cromate/preped/
