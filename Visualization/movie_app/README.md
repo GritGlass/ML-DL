@@ -41,17 +41,4 @@ A visual and interactive dashboard built with **Streamlit** for analyzing movie 
 | Plotly     | Charts & Graphs        |
 | MovieLens Dataset | Source Data     |
 
----
 
-## 🚀 Getting Started
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/yourname/movie-dashboard.git
-cd movie-dashboard
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Run the app
-streamlit run app.py
