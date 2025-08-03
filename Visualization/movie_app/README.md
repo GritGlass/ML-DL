@@ -15,10 +15,9 @@ A visual and interactive dashboard built with **Streamlit** for analyzing movie 
 > ▶️ 아래 영상에서 실제 동작을 확인해보세요!
 
 <p align="center">
-  <video width="600" controls>
-    <source src="https://github.com/GritGlass/ML-DL/blob/main/Visualization/movie_app/assets/movie_dashboard.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <a href="https://x.com/GritGlass211/status/1924203936409370785" target="_blank">
+    <img src="assets/movie_dashboard.png" width="600" alt="Watch the Demo"/>
+  </a>
 </p>
 
 ---
