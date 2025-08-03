@@ -16,7 +16,7 @@ A visual and interactive dashboard built with **Streamlit** for analyzing movie 
 
 <p align="center">
   <video width="600" controls>
-    <source src="https://github.com/GritGlass/ML-DL/blob/f9d1f8c32cb963d0000d0c92d11580270ddf785c/Visualization/movie_app/assets/movie_dashboard.mp4" type="video/mp4">
+    <source src="https://github.com/GritGlass/ML-DL/blob/main/Visualization/movie_app/assets/movie_dashboard.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </p>
