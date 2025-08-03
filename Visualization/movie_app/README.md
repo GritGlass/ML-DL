@@ -15,11 +15,11 @@ A visual and interactive dashboard built with **Streamlit** for analyzing movie 
 > ▶️ 아래 영상에서 실제 동작을 확인해보세요!
 
 <p align="center">
-  <video width="600" controls>
-    <source src="assets/movie_dashboard_demo.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <a href="https://youtu.be/your_video_id">
+    <img src="https://img.youtube.com/vi/your_video_id/0.jpg" width="600" alt="Watch the demo"/>
+  </a>
 </p>
+
 
 ---
 
